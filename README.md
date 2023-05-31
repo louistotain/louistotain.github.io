@@ -1,19 +1,19 @@
-# Portfolio de Louis TOTAIN
+# BIENVENUE SUR MON PORTFOLIO !
 
-Salut ! 👋 Bienvenue sur mon portfolio en ligne. Je suis Louis TOTAIN, un développeur web passionné. Ici, vous trouverez une sélection de mes projets et de mon travail. J'aime créer des sites web dynamiques et fonctionnels qui donnent vie aux idées.
+Salut ! 👋 Bienvenue sur mon portfolio en ligne. Je suis Louis TOTAIN, un développeur web passionné. Ici, vous trouverez une sélection de mes projets et de mon travail.
 
 ## 🔍 À propos de moi
 
-Je suis un développeur web autodidacte, curieux et créatif. Je me spécialise dans les technologies web modernes telles que HTML, CSS, JavaScript et j'ai une expérience pratique avec divers frameworks et bibliothèques comme React et Vue.js. J'aime également explorer de nouvelles tendances, donc ne soyez pas surpris si vous voyez quelques expérimentations ici !
+Je suis un développeur web curieux et créatif. Je me spécialise dans les technologies web modernes telles que HTML, CSS, JavaScript et j'ai une expérience pratique avec divers frameworks et bibliothèques comme Laravel et Vue.js. J'aime également explorer de nouvelles tendances, donc ne soyez pas surpris si vous voyez quelques expérimentations ici !
 
 ## 🌐 Compétences
 
 - **Langages de programmation**: HTML, CSS, JavaScript, PHP
-- **Frameworks et bibliothèques**: React, Vue.js, Bootstrap, jQuery
-- **Bases de données**: MySQL, MongoDB
-- **Outils de développement**: Git, Webpack, Gulp
-- **CMS**: WordPress
-- **Design**: Adobe Photoshop, Figma
+- **Frameworks et bibliothèques**: Vue.js, Bootstrap, jQuery
+- **Bases de données**: MySQL
+- **Outils de développement**: Git, PhpStorm
+- **CMS**: Drupal
+- **Design**: Figma, Adobe XD, Adobe Photoshop, Paint.NET
 - **Autres compétences**: SEO, Accessibilité web
 
 ## 📂 Projets
@@ -32,7 +32,7 @@ Vous pouvez me contacter via les réseaux sociaux ou par e-mail :
 
 - LinkedIn: [Louis TOTAIN](lien_vers_votre_profil_LinkedIn)
 - Twitter: [@votre_nom](lien_vers_votre_profil_Twitter)
-- Email: votre_email@example.com
+- Email: louistotain@gmail.com
 
 N'hésitez pas à me contacter si vous avez des questions, des suggestions ou si vous souhaitez simplement discuter de projets passionnants !
 
