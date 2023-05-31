@@ -1,4 +1,6 @@
-# BIENVENUE SUR MON PORTFOLIO ! (https://louistotain.github.io)
+https://louistotain.github.io
+
+# BIENVENUE SUR MON PORTFOLIO !
 
 Salut ! 👋 Bienvenue sur mon portfolio en ligne. Je suis Louis TOTAIN, un développeur web passionné. Ici, vous trouverez une sélection de mes projets et de mon travail.
 
