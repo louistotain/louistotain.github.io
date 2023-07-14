@@ -18,7 +18,7 @@ Vous pouvez accéder à mon site à l'adresse suivante : [https://louistotain.gi
 ## 🌐 Compétences
 
 - **Langages de programmation**: HTML, CSS, JavaScript, PHP
-- **Frameworks et bibliothèques**: Vue.js, Bootstrap, jQuery
+- **Frameworks et bibliothèques**: Vue.js, Bootstrap, jQuery, three.js
 - **Bases de données**: MySQL
 - **Outils de développement**: Git, PhpStorm
 - **CMS**: Drupal
