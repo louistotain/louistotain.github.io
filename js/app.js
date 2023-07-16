@@ -236,7 +236,6 @@ var APP = {
 
 			document.addEventListener( 'keydown', onKeyDown );
 			document.addEventListener( 'keyup', onKeyUp );
-			document.addEventListener( 'pointerdown', onPointerDown );
 			document.addEventListener( 'pointerup', onPointerUp );
 			document.addEventListener( 'pointermove', onPointerMove );
 			document.addEventListener("pointerdown", onPointerDown);
@@ -256,6 +255,7 @@ var APP = {
 			document.removeEventListener( 'pointerdown', onPointerDown );
 			document.removeEventListener( 'pointerup', onPointerUp );
 			document.removeEventListener( 'pointermove', onPointerMove );
+
 
 			dispatch( events.stop, arguments );
 
@@ -294,22 +294,39 @@ var APP = {
 
 		}
 
-		function onPointerDown( event ) {
-
-			dispatch( events.pointerdown, event );
-
-		}
-
 		function onPointerUp( event ) {
 
 			dispatch( events.pointerup, event );
 
 		}
 
-		function onPointerMove( event ) {
+		function onPointerMove(event) {
+			event.preventDefault();
 
-			dispatch( events.pointermove, event );
+			// Récupérer le groupe racine en recherchant par son nom
+			const rootGroup = scene.getObjectByProperty('name', '100723_louistotain.gltf');
 
+			// Vérifier si le groupe racine a été trouvé
+			if (rootGroup instanceof THREE.Group) {
+				const raycaster = new THREE.Raycaster();
+				const mouse = new THREE.Vector2();
+				mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+				mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+				raycaster.setFromCamera(mouse, camera);
+
+				const intersects = raycaster.intersectObject(rootGroup, true);
+
+				let isHovered;
+				if (intersects.length > 0) {
+					isHovered = true;
+					// Modifier le style du curseur lors du survol
+					renderer.domElement.style.cursor = 'pointer';
+				} else {
+					isHovered = false;
+					// Rétablir le style du curseur lorsque le survol se termine
+					renderer.domElement.style.cursor = 'auto';
+				}
+			}
 		}
 
 		function onPointerDown(event) {
