@@ -354,7 +354,7 @@ var APP = {
 					isHovered = true;
 					// Modifier le style du curseur lors du survol
 					// renderer.domElement.style.cursor = 'none';
-					document.getElementById('cursor').style.backgroundImage = "url('/louistotain/img/img.png')";
+					document.getElementById('cursor').style.backgroundImage = "url('img/sword.png')";
 					document.getElementById('body').style.cursor = "none";
 
 				} else {
