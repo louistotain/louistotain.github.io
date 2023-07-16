@@ -1,0 +1,41 @@
+body {
+  font-family: sans-serif;
+  font-size: 11px;
+  margin: 0;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+}
+
+#cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 129.65px;
+  background-size: cover;
+
+  /* Propriétés d'animation */
+  transition: transform .15s ease-in-out;
+  transform-origin: center;
+}
+
+#cursor.strike {
+  /* Animation de frappe */
+  animation: strike .15s linear;
+}
+
+/* Animation de frappe */
+@keyframes strike {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(45deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}

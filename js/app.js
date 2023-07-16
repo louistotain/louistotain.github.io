@@ -137,6 +137,9 @@ var APP = {
 			light.position.z = - 500;
 			scene.add( light );
 
+			let eyesClose = scene.getObjectByName('EyeClose');
+			eyesClose.visible = false;
+
 		};
 
 		this.setPixelRatio = function ( pixelRatio ) {
@@ -172,9 +175,11 @@ var APP = {
 		}
 
 		var time, startTime, prevTime;
+		let manageEyes = 0;
 
 		function animate() {
 			time = performance.now();
+			manageEyes++;
 
 			try {
 				dispatch(events.update, { time: time - startTime, delta: time - prevTime });
@@ -182,8 +187,36 @@ var APP = {
 				console.error(e.message || e, e.stack || '');
 			}
 
-			let object = scene.getObjectByName('100723_louistotain.gltf');
+			let object = scene.getObjectByName('100723_louistotain');
 			let eyes = scene.getObjectByName('Eye');
+			let eyesClose = scene.getObjectByName('EyeClose');
+
+			if (manageEyes === 400) {
+				// On ferme les yeux
+				eyes.visible = false;
+				eyesClose.visible = true;
+
+				setTimeout(() => {
+					// On réouvre les yeux après un délai de 200 millisecondes (ajustez selon vos besoins)
+					eyes.visible = true;
+					eyesClose.visible = false;
+
+					setTimeout(() => {
+						// Deuxième clignotement après un délai de 200 millisecondes (ajustez selon vos besoins)
+						// On ferme les yeux à nouveau
+						eyes.visible = false;
+						eyesClose.visible = true;
+
+						setTimeout(() => {
+							// On réouvre les yeux après un délai de 200 millisecondes (ajustez selon vos besoins)
+							eyes.visible = true;
+							eyesClose.visible = false;
+						}, 150);
+					}, 150);
+				}, 150);
+
+				manageEyes = 0;
+			}
 
 			if (normalizedX && normalizedY) {
 				// Définir la vitesse de l'effet de rebond
@@ -206,6 +239,9 @@ var APP = {
 				eyes.position.x += offsetX / 1.5;
 				eyes.position.y += offsetY / 1.5;
 
+				eyesClose.position.x += offsetX / 1.5;
+				eyesClose.position.y += offsetY / 1.5;
+
 				// Mettre à jour la rotation de l'objet en fonction des coordonnées normalisées avec effet de rebond
 				const targetRotationY = normalizedX / 15;
 				const targetRotationX = -normalizedY / 15;
@@ -218,9 +254,6 @@ var APP = {
 
 				object.rotation.y += offsetRotationY;
 				object.rotation.x += offsetRotationX;
-
-				// eyes.rotation.y += offsetRotationY;
-				// eyes.rotation.x += offsetRotationX;
 			}
 
 			renderer.render(scene, camera);
@@ -304,10 +337,10 @@ var APP = {
 			event.preventDefault();
 
 			// Récupérer le groupe racine en recherchant par son nom
-			const rootGroup = scene.getObjectByProperty('name', '100723_louistotain.gltf');
+			const rootGroup = scene.getObjectByProperty('name', '100723_louistotain');
 
 			// Vérifier si le groupe racine a été trouvé
-			if (rootGroup instanceof THREE.Group) {
+			if (rootGroup instanceof THREE.Object3D) {
 				const raycaster = new THREE.Raycaster();
 				const mouse = new THREE.Vector2();
 				mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
@@ -320,11 +353,16 @@ var APP = {
 				if (intersects.length > 0) {
 					isHovered = true;
 					// Modifier le style du curseur lors du survol
-					renderer.domElement.style.cursor = 'pointer';
+					// renderer.domElement.style.cursor = 'none';
+					document.getElementById('cursor').style.backgroundImage = "url('/louistotain/img/img.png')";
+					document.getElementById('body').style.cursor = "none";
+
 				} else {
 					isHovered = false;
 					// Rétablir le style du curseur lorsque le survol se termine
-					renderer.domElement.style.cursor = 'auto';
+					// renderer.domElement.style.cursor = 'auto';
+					document.getElementById('cursor').style.backgroundImage = "";
+					document.getElementById('body').style.cursor = "default";
 				}
 			}
 		}
@@ -351,10 +389,10 @@ var APP = {
 				const clickedObject = intersects[0].object;
 
 				// Récupérer le groupe racine en recherchant par son nom
-				const rootGroup = scene.getObjectByProperty('name', '100723_louistotain.gltf');
+				const rootGroup = scene.getObjectByProperty('name', '100723_louistotain');
 
 				// Vérifier si le groupe racine a été trouvé
-				if (rootGroup instanceof THREE.Group) {
+				if (rootGroup instanceof THREE.Object3D) {
 					const meshes = [];
 
 					// Stocker les meshes du groupe dans un tableau
@@ -377,26 +415,39 @@ var APP = {
 					}
 
 					// Appliquer l'effet de couleur de dégâts aux couleurs d'origine
-					meshes.forEach((mesh) => {
-						const originalColor = rootGroup.userData.originalColors[meshes.indexOf(mesh)];
-						const damagedColor = originalColor.clone().lerp(damageColor, 0.5); // Ajuster le paramètre de mélange (ici 0.5)
+					const originalColors = rootGroup.userData.originalColors;
+					const damagedColors = originalColors.map((originalColor) => originalColor.clone().lerp(damageColor, 0.5)); // Ajuster le paramètre de mélange (ici 0.5)
+					meshes.forEach((mesh, index) => {
+						const damagedColor = damagedColors[index];
 						mesh.material.color.copy(damagedColor);
 					});
 
-					// Rétablir les couleurs d'origine après un délai
+					// Récupérer la position d'origine du groupe racine
+					const originalPosition = rootGroup.position.clone();
+
+					// Déplacer le groupe racine avec une transformation aléatoire
+					const damagedPosition = originalPosition.clone();
+					const randomOffset = Math.random() * 0.1 - 0.05; // Ajustez les valeurs pour contrôler l'amplitude du mouvement
+					damagedPosition.x += randomOffset;
+					damagedPosition.y += randomOffset;
+					damagedPosition.z += randomOffset;
+					rootGroup.position.copy(damagedPosition);
+
+					// Rétablir les couleurs d'origine et la position après un délai
 					restoreColorsTimeoutId = setTimeout(function () {
-						const originalColors = rootGroup.userData.originalColors;
 						meshes.forEach((mesh, index) => {
 							const originalColor = originalColors[index];
 							mesh.material.color.copy(originalColor);
 						});
+						rootGroup.position.copy(originalPosition);
 						restoreColorsTimeoutId = null;
 					}, restoreDuration);
 				} else {
-					console.log("Aucun groupe racine trouvé avec le nom '100723_louistotain.gltf'.");
+					console.log("Aucun groupe racine trouvé avec le nom '100723_louistotain'.");
 				}
 			}
 		}
+
 
 	}
 

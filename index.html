@@ -5,24 +5,44 @@
     <meta charset="utf-8">
     <meta name="generator" content="Three.js Editor">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <style>
-        body {
-            font-family: sans-serif;
-            font-size: 11px;
-            margin: 0px;
-        }
-
-        canvas {
-            display: block;
-        }
-    </style>
+    <link rel="stylesheet" href="css/app.css">
 </head>
-<body ontouchstart="">
+<body ontouchstart="" id="body">
 
 <div style="position: absolute; padding: 1em;">
+    <div id="cursor"></div>
     <h1>Louis TOTAIN | Portfolio</h1>
     <p>Site en construction</p>
 </div>
+
+<script>
+    var cursor = document.getElementById("cursor");
+    var isAnimating = false;
+
+    document.addEventListener("mousemove", function (event) {
+        var x = event.clientX;
+        var y = event.clientY;
+
+        cursor.style.left = x - 12 + "px";
+        cursor.style.top = y - 12 + "px";
+    });
+
+    document.addEventListener("click", function (event) {
+        if (isAnimating) {
+            return; // Empêche l'animation si elle est déjà en cours
+        }
+
+        isAnimating = true;
+
+        // Ajout d'une classe pour déclencher l'animation de frappe
+        cursor.classList.add("strike");
+
+        setTimeout(function () {
+            cursor.classList.remove("strike");
+            isAnimating = false;
+        }, 150);
+    });
+</script>
 
 <script type="module">
 
@@ -34,7 +54,7 @@
     window.VRButton = VRButton; // Used by APP Scripts.
 
     var loader = new THREE.FileLoader();
-    loader.load('app.json', function (text) {
+    loader.load('app4.json', function (text) {
 
         var player = new APP.Player();
         player.load(JSON.parse(text));
