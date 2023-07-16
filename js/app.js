@@ -20,6 +20,25 @@ var APP = {
 		this.width = 500;
 		this.height = 500;
 
+		var mouse = new THREE.Vector2();
+		var normalizedX, normalizedY = null;
+
+		addEventListener("mousemove", (event) => {});
+
+		onmousemove = (e) => {
+			// Récupérer les dimensions maximales de l'écran
+			const maxWidth = window.innerWidth;
+			const maxHeight = window.innerHeight;
+
+			// Récupérer les coordonnées de la souris
+			const mouseX = e.clientX;
+			const mouseY = e.clientY;
+
+			// Normaliser les coordonnées de la souris par rapport aux dimensions maximales
+			normalizedX = (mouseX / maxWidth) * 2 - 1; // Valeur entre -1 et 1
+			normalizedY = -(mouseY / maxHeight) * 2 + 1; // Valeur entre -1 et 1
+		};
+
 		this.load = function ( json ) {
 
 			var project = json.project;
@@ -112,6 +131,12 @@ var APP = {
 
 			scene = value;
 
+			const light = new THREE.DirectionalLight( 0xd5deff );
+			light.position.x = 300;
+			light.position.y = 250;
+			light.position.z = - 500;
+			scene.add( light );
+
 		};
 
 		this.setPixelRatio = function ( pixelRatio ) {
@@ -149,23 +174,58 @@ var APP = {
 		var time, startTime, prevTime;
 
 		function animate() {
-
 			time = performance.now();
 
 			try {
-
-				dispatch( events.update, { time: time - startTime, delta: time - prevTime } );
-
-			} catch ( e ) {
-
-				console.error( ( e.message || e ), ( e.stack || '' ) );
-
+				dispatch(events.update, { time: time - startTime, delta: time - prevTime });
+			} catch (e) {
+				console.error(e.message || e, e.stack || '');
 			}
 
-			renderer.render( scene, camera );
+			let object = scene.getObjectByName('100723_louistotain.gltf');
+			let eyes = scene.getObjectByName('Eye');
+
+			if (normalizedX && normalizedY) {
+				// Définir la vitesse de l'effet de rebond
+				const bounceSpeed = 0.1;
+				const maxOffset = 1; // Valeur de dépassement maximale
+
+				// Mettre à jour la position de l'objet en fonction des coordonnées normalisées avec effet de rebond
+				const targetX = normalizedX / 10;
+				const targetY = normalizedY / 10;
+				const deltaX = targetX - object.position.x;
+				const deltaY = targetY - object.position.y;
+
+				// Ajouter l'effet de rebond en dépassant légèrement les limites
+				const offsetX = Math.min(Math.abs(deltaX) * bounceSpeed, maxOffset) * Math.sign(deltaX);
+				const offsetY = Math.min(Math.abs(deltaY) * bounceSpeed, maxOffset) * Math.sign(deltaY);
+
+				object.position.x += offsetX;
+				object.position.y += offsetY;
+
+				eyes.position.x += offsetX / 1.5;
+				eyes.position.y += offsetY / 1.5;
+
+				// Mettre à jour la rotation de l'objet en fonction des coordonnées normalisées avec effet de rebond
+				const targetRotationY = normalizedX / 15;
+				const targetRotationX = -normalizedY / 15;
+				const deltaRotationY = targetRotationY - object.rotation.y;
+				const deltaRotationX = targetRotationX - object.rotation.x;
+
+				// Ajouter l'effet de rebond à la rotation en dépassant légèrement les limites
+				const offsetRotationY = Math.min(Math.abs(deltaRotationY) * bounceSpeed, maxOffset) * Math.sign(deltaRotationY);
+				const offsetRotationX = Math.min(Math.abs(deltaRotationX) * bounceSpeed, maxOffset) * Math.sign(deltaRotationX);
+
+				object.rotation.y += offsetRotationY;
+				object.rotation.x += offsetRotationX;
+
+				// eyes.rotation.y += offsetRotationY;
+				// eyes.rotation.x += offsetRotationX;
+			}
+
+			renderer.render(scene, camera);
 
 			prevTime = time;
-
 		}
 
 		this.play = function () {
@@ -179,6 +239,7 @@ var APP = {
 			document.addEventListener( 'pointerdown', onPointerDown );
 			document.addEventListener( 'pointerup', onPointerUp );
 			document.addEventListener( 'pointermove', onPointerMove );
+			document.addEventListener("pointerdown", onPointerDown);
 
 			dispatch( events.start, arguments );
 
@@ -249,6 +310,75 @@ var APP = {
 
 			dispatch( events.pointermove, event );
 
+		}
+
+		function onPointerDown(event) {
+			event.preventDefault();
+
+			// Récupérer les coordonnées du clic de souris
+			const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+			const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+
+			// Créer un rayon à partir de la caméra et la position de la souris
+			const raycaster = new THREE.Raycaster();
+			raycaster.setFromCamera(new THREE.Vector2(mouseX, mouseY), camera);
+
+			// Intersecter le rayon avec les objets cliquables
+			const intersects = raycaster.intersectObjects(scene.children, true);
+
+			let restoreColorsTimeoutId = null;
+			const restoreDuration = 100; // Durée de rétablissement en millisecondes
+			const damageColor = new THREE.Color("#FF5555");
+
+			if (intersects.length > 0) {
+				const clickedObject = intersects[0].object;
+
+				// Récupérer le groupe racine en recherchant par son nom
+				const rootGroup = scene.getObjectByProperty('name', '100723_louistotain.gltf');
+
+				// Vérifier si le groupe racine a été trouvé
+				if (rootGroup instanceof THREE.Group) {
+					const meshes = [];
+
+					// Stocker les meshes du groupe dans un tableau
+					rootGroup.traverse(function (child) {
+						if (child instanceof THREE.Mesh) {
+							meshes.push(child);
+						}
+					});
+
+					// Stocker les couleurs d'origine des meshes s'il n'a pas été déjà stocké
+					if (!rootGroup.userData.originalColors) {
+						const originalColors = meshes.map((mesh) => mesh.material.color.clone());
+						rootGroup.userData.originalColors = originalColors;
+					}
+
+					// Annuler le rétablissement des couleurs d'origine si en cours
+					if (restoreColorsTimeoutId !== null) {
+						clearTimeout(restoreColorsTimeoutId);
+						restoreColorsTimeoutId = null;
+					}
+
+					// Appliquer l'effet de couleur de dégâts aux couleurs d'origine
+					meshes.forEach((mesh) => {
+						const originalColor = rootGroup.userData.originalColors[meshes.indexOf(mesh)];
+						const damagedColor = originalColor.clone().lerp(damageColor, 0.5); // Ajuster le paramètre de mélange (ici 0.5)
+						mesh.material.color.copy(damagedColor);
+					});
+
+					// Rétablir les couleurs d'origine après un délai
+					restoreColorsTimeoutId = setTimeout(function () {
+						const originalColors = rootGroup.userData.originalColors;
+						meshes.forEach((mesh, index) => {
+							const originalColor = originalColors[index];
+							mesh.material.color.copy(originalColor);
+						});
+						restoreColorsTimeoutId = null;
+					}, restoreDuration);
+				} else {
+					console.log("Aucun groupe racine trouvé avec le nom '100723_louistotain.gltf'.");
+				}
+			}
 		}
 
 	}
