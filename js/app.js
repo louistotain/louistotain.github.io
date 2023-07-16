@@ -187,7 +187,7 @@ var APP = {
 				console.error(e.message || e, e.stack || '');
 			}
 
-			let object = scene.getObjectByName('100723_louistotain');
+			let object = scene.getObjectByName('100723_louistotain.gltf');
 			let eyes = scene.getObjectByName('Eye');
 			let eyesClose = scene.getObjectByName('EyeClose');
 
@@ -337,7 +337,7 @@ var APP = {
 			event.preventDefault();
 
 			// Récupérer le groupe racine en recherchant par son nom
-			const rootGroup = scene.getObjectByProperty('name', '100723_louistotain');
+			const rootGroup = scene.getObjectByProperty('name', '100723_louistotain.gltf');
 
 			// Vérifier si le groupe racine a été trouvé
 			if (rootGroup instanceof THREE.Object3D) {
@@ -389,7 +389,7 @@ var APP = {
 				const clickedObject = intersects[0].object;
 
 				// Récupérer le groupe racine en recherchant par son nom
-				const rootGroup = scene.getObjectByProperty('name', '100723_louistotain');
+				const rootGroup = scene.getObjectByProperty('name', '100723_louistotain.gltf');
 
 				// Vérifier si le groupe racine a été trouvé
 				if (rootGroup instanceof THREE.Object3D) {
@@ -443,7 +443,7 @@ var APP = {
 						restoreColorsTimeoutId = null;
 					}, restoreDuration);
 				} else {
-					console.log("Aucun groupe racine trouvé avec le nom '100723_louistotain'.");
+					console.log("Aucun groupe racine trouvé avec le nom '100723_louistotain.gltf'.");
 				}
 			}
 		}
