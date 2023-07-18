@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="generator" content="Three.js Editor">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" href="css/app.css?<?php echo date('Y-m-d\TH-i-s'); ?>">
+    <link rel="stylesheet" href="css/app.css" id="css-link">
 </head>
 <body ontouchstart="" id="body">
 
@@ -46,9 +46,9 @@
 
 <script type="module">
 
-    import * as THREE from './js/three.module.js?<?php echo date('Y-m-d\TH-i-s'); ?>';
-    import {APP} from './js/app.js?<?php echo date('Y-m-d\TH-i-s'); ?>';
-    import {VRButton} from './js/VRButton.js?<?php echo date('Y-m-d\TH-i-s'); ?>';
+    import * as THREE from './js/three.module.js';
+    import {APP} from './js/app.js';
+    import {VRButton} from './js/VRButton.js';
 
     window.THREE = THREE; // Used by APP Scripts.
     window.VRButton = VRButton; // Used by APP Scripts.
@@ -71,6 +71,25 @@
 
     });
 
+</script>
+
+<script>
+
+    // Add auto refresh cache imports js
+
+    var cssLink = document.getElementById('css-link');
+    var timestamp = new Date().toISOString().replace(/[-:.]/g, '');
+    cssLink.href = "css/app.css?" + timestamp;
+
+    var scriptElements = document.querySelectorAll('script[type="module"]');
+
+    scriptElements.forEach(function(script) {
+        var src = script.src;
+        if (src.includes('.js')) {
+            var updatedSrc = src + "?" + timestamp;
+            script.src = updatedSrc;
+        }
+    });
 </script>
 </body>
 </html>
