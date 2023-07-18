@@ -27,7 +27,7 @@ Vous pouvez accéder à mon site à l'adresse suivante : [https://louistotain.gi
 - **Outils de développement**: Git, PhpStorm
 - **CMS**: Drupal
 - **Design**: Figma, Adobe XD, Adobe Photoshop, Paint.NET
-- **Autres compétences**: SEO, Accessibilité web
+- **Autres compétences**: SEO, 3D (Blender - mais très basiques)
 
 
 ## 📂 Projets
