@@ -4,6 +4,7 @@ Salut ! Je suis Louis TOTAIN, un développeur web passionné, et je vous souhait
 
 Vous pouvez accéder à mon site à l'adresse suivante : [https://louistotain.github.io](https://louistotain.github.io). N'hésitez pas à le visiter pour explorer mes réalisations !
 
+
 ## 🔍 À propos de moi
 
 <div>
@@ -17,6 +18,7 @@ Vous pouvez accéder à mon site à l'adresse suivante : [https://louistotain.gi
 ![299949096_139275695465105_2194359815184758617_n](https://github.com/louistotain/louistotain.github.io/assets/71643450/1608abb3-b112-40cf-964a-1165d7ea516a)
 
 
+
 ## 🌐 Compétences
 
 - **Langages de programmation**: HTML, CSS, JavaScript, PHP
@@ -26,6 +28,7 @@ Vous pouvez accéder à mon site à l'adresse suivante : [https://louistotain.gi
 - **CMS**: Drupal
 - **Design**: Figma, Adobe XD, Adobe Photoshop, Paint.NET
 - **Autres compétences**: SEO, Accessibilité web
+
 
 ## 📂 Projets
 
@@ -37,6 +40,7 @@ Voici quelques-uns de mes projets récents :
 
 N'hésitez pas à consulter mon [portfolio complet](lien_vers_le_portfolio) pour voir plus de projets et d'exemples de mon travail.
 
+
 ## 📫 Me contacter
 
 Vous pouvez me contacter via les réseaux sociaux ou par e-mail :
@@ -46,6 +50,7 @@ Vous pouvez me contacter via les réseaux sociaux ou par e-mail :
 - Email: louistotain@gmail.com
 
 N'hésitez pas à me contacter si vous avez des questions, des suggestions ou si vous souhaitez simplement discuter de projets passionnants !
+
 
 ## 🙌 Merci !
 
