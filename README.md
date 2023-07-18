@@ -38,7 +38,7 @@ Voici quelques-uns de mes projets récents :
 
 2. **[Nom du projet](lien_vers_le_projet)** - Une brève description du projet et des technologies utilisées.
 
-N'hésitez pas à consulter mon [portfolio complet](lien_vers_le_portfolio) pour voir plus de projets et d'exemples de mon travail.
+N'hésitez pas à consulter mon [portfolio complet]([lien_vers_le_portfolio](https://louistotain.github.io)) pour voir plus de projets et d'exemples de mon travail.
 
 
 ## 📫 Me contacter
