@@ -45,7 +45,7 @@ N'hésitez pas à consulter mon [portfolio complet](https://louistotain.github.i
 
 Vous pouvez me contacter via les réseaux sociaux ou par e-mail :
 
-- LinkedIn: [Louis TOTAIN](lien_vers_votre_profil_LinkedIn)
+- LinkedIn: [Louis TOTAIN](https://www.linkedin.com/in/louis-totain-%F0%9F%92%BB-b151281b0/)
 - Email: louistotain@gmail.com
 
 N'hésitez pas à me contacter si vous avez des questions ou des suggestions !
