@@ -15,6 +15,9 @@ Vous pouvez accéder à mon site à l'adresse suivante : [https://louistotain.gi
   <div><img src="https://media.licdn.com/dms/image/C4D03AQG0RyHeKoU6WQ/profile-displayphoto-shrink_800_800/0/1614084591313?e=1691020800&amp;v=beta&amp;t=H92D74sFnytiijr9kDG9Bflxs26EXxcGUDAji0fhaXg" alt="image profil" width="120" height="120" style="border-radius:50%"></div>
 </div>
 
+![299949096_139275695465105_2194359815184758617_n](https://github.com/louistotain/louistotain.github.io/assets/71643450/1608abb3-b112-40cf-964a-1165d7ea516a)
+
+
 ## 🌐 Compétences
 
 - **Langages de programmation**: HTML, CSS, JavaScript, PHP
