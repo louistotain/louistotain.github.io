@@ -46,13 +46,12 @@ N'hésitez pas à consulter mon [portfolio complet](https://louistotain.github.i
 Vous pouvez me contacter via les réseaux sociaux ou par e-mail :
 
 - LinkedIn: [Louis TOTAIN](lien_vers_votre_profil_LinkedIn)
-- Twitter: [@votre_nom](lien_vers_votre_profil_Twitter)
 - Email: louistotain@gmail.com
 
-N'hésitez pas à me contacter si vous avez des questions, des suggestions ou si vous souhaitez simplement discuter de projets passionnants !
+N'hésitez pas à me contacter si vous avez des questions ou des suggestions !
 
 
 ## 🙌 Merci !
 
-Merci d'avoir visité mon portfolio. J'espère que vous avez apprécié votre visite et que vous avez trouvé mon travail intéressant. N'hésitez pas à me faire part de vos commentaires. À bientôt ! 😊
+Merci d'avoir visité mon portfolio. J'espère que vous avez apprécié votre visite et que vous avez trouvé mon travail intéressant. À bientôt ! 😊
 
