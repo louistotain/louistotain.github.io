@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="generator" content="Three.js Editor">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/app.css?<?php echo date('Y-m-d\TH-i-s'); ?>">
 </head>
 <body ontouchstart="" id="body">
 
@@ -46,15 +46,15 @@
 
 <script type="module">
 
-    import * as THREE from './js/three.module.js';
-    import {APP} from './js/app.js';
-    import {VRButton} from './js/VRButton.js';
+    import * as THREE from './js/three.module.js?<?php echo date('Y-m-d\TH-i-s'); ?>';
+    import {APP} from './js/app.js?<?php echo date('Y-m-d\TH-i-s'); ?>';
+    import {VRButton} from './js/VRButton.js?<?php echo date('Y-m-d\TH-i-s'); ?>';
 
     window.THREE = THREE; // Used by APP Scripts.
     window.VRButton = VRButton; // Used by APP Scripts.
 
     var loader = new THREE.FileLoader();
-    loader.load('app_good3.json', function (text) {
+    loader.load('3d/app_good3.json', function (text) {
 
         var player = new APP.Player();
         player.load(JSON.parse(text));
