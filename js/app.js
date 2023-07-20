@@ -277,8 +277,8 @@ var APP = {
 			document.addEventListener( 'keydown', onKeyDown );
 			document.addEventListener( 'keyup', onKeyUp );
 			document.addEventListener( 'pointerup', onPointerUp );
-			document.addEventListener( 'pointermove', onPointerMove );
-			document.addEventListener("pointerdown", onPointerDown);
+			// document.addEventListener( 'pointermove', onPointerMove );
+			// document.addEventListener("pointerdown", onPointerDown);
 
 			dispatch( events.start, arguments );
 
@@ -350,8 +350,8 @@ var APP = {
 			if (rootGroup instanceof THREE.Object3D) {
 				const raycaster = new THREE.Raycaster();
 				const mouse = new THREE.Vector2();
-				mouse.x = (event.clientX / document.getElementById('3d').offsetWidth) * 2 - 1;
-				mouse.y = -(event.clientY / document.getElementById('3d').offsetHeight) * 2 + 1;
+				mouse.x = (event.clientX / document.getElementById('3d-content').offsetWidth) * 2 - 1;
+				mouse.y = -(event.clientY / document.getElementById('3d-content').offsetHeight) * 2 + 1;
 				raycaster.setFromCamera(mouse, camera);
 
 				const intersects = raycaster.intersectObject(rootGroup, true);
@@ -369,7 +369,7 @@ var APP = {
 					// Rétablir le style du curseur lorsque le survol se termine
 					// renderer.domElement.style.cursor = 'auto';
 					document.getElementById('cursor').style.backgroundImage = "";
-					document.getElementById('body').style.cursor = "default";
+					document.getElementById('body').style.cursor = null;
 				}
 			}
 		}
@@ -378,8 +378,8 @@ var APP = {
 			event.preventDefault();
 
 			// Récupérer les coordonnées du clic de souris
-			const mouseX = (event.clientX / document.getElementById('3d').offsetWidth) * 2 - 1;
-			const mouseY = -(event.clientY / document.getElementById('3d').offsetHeight) * 2 + 1;
+			const mouseX = (event.clientX / document.getElementById('3d-content').offsetWidth) * 2 - 1;
+			const mouseY = -(event.clientY / document.getElementById('3d-content').offsetHeight) * 2 + 1;
 
 			// Créer un rayon à partir de la caméra et la position de la souris
 			const raycaster = new THREE.Raycaster();

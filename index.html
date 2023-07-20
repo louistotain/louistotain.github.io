@@ -10,7 +10,7 @@
 <body ontouchstart="" id="body">
  <div id="cursor"></div>
 
-<div style="width: calc(100vw - 6em); height: calc(100vh - 5em); margin: 2em 3em 3em 3em;">
+<div style="width: calc(100vw - 4em); height: calc(100vh - 3em); margin: 1em 2em 2em 2em;">
     <div style="width: 100%; height: 50px; display: flex; justify-content: center">
         <div style="display: flex; align-items: center">
             <span></span>
@@ -23,13 +23,38 @@
         </div>
     </div>
     <div style="width: 100%; height: calc(100% - 50px); background: #f9eee0; border-radius: .5em; display: flex">
-        <div id="3d" style="width: 50%; height: 100%;"></div>
+        <div id="3d" style="width: 50%; height: 100%; position: relative;">
+            <div id="background-3d" style="position: absolute; z-index: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; transform: scale(0.75); padding-top: 5em; margin-left: -3em;">
+                <svg width="722" height="621" viewBox="0 0 722 621" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g filter="url(#filter0_d_530_3)">
+                        <path d="M722 382.863C722 596.291 602.66 617 389.091 617C175.522 617 0 460.706 0 247.278C0 33.8496 139.661 0 353.23 0C566.799 0 722 169.434 722 382.863Z" fill="url(#paint0_linear_530_3)"/>
+                    </g>
+                    <defs>
+                        <filter id="filter0_d_530_3" x="0" y="0" width="722" height="621" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                            <feOffset dy="4"/>
+                            <feComposite in2="hardAlpha" operator="out"/>
+                            <feColorMatrix type="matrix" values="0 0 0 0 0.945833 0 0 0 0 0.874738 0 0 0 0 0.784253 0 0 0 1 0"/>
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_530_3"/>
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_530_3" result="shape"/>
+                        </filter>
+                        <linearGradient id="paint0_linear_530_3" x1="722" y1="0" x2="-8.3993e-06" y2="617" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#FDFDFD"/>
+                            <stop offset="1" stop-color="white"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div id="3d-content" style="position: absolute; z-index: 1; width: 100%; height: 100%;"></div>
+        </div>
         <div style="width: 50%; height: 100%"></div>
     </div>
 </div>
 
 <script>
     var cursor = document.getElementById("cursor");
+    var cursorDefault = document.getElementById("cursor-default");
     var isAnimating = false;
 
     document.addEventListener("mousemove", function (event) {
@@ -38,6 +63,9 @@
 
         cursor.style.left = x - 12 + "px";
         cursor.style.top = y - 12 + "px";
+
+        cursorDefault.style.left = x + "px";
+        cursorDefault.style.top = y + "px";
     });
 
     document.addEventListener("click", function (event) {
@@ -72,13 +100,13 @@
         var player = new APP.Player();
         player.load(JSON.parse(text));
 
-        player.setSize(document.getElementById('3d').offsetWidth, document.getElementById('3d').offsetHeight);
+        player.setSize(document.getElementById('3d-content').offsetWidth, document.getElementById('3d-content').offsetHeight);
         player.play();
 
-        document.getElementById('3d').appendChild(player.dom);
+        document.getElementById('3d-content').appendChild(player.dom);
 
         window.addEventListener('resize', function () {
-            player.setSize(document.getElementById('3d').offsetWidth, document.getElementById('3d').offsetHeight);
+            player.setSize(document.getElementById('3d-content').offsetWidth, document.getElementById('3d-content').offsetHeight);
         });
 
     });
@@ -88,7 +116,6 @@
 <script>
 
     // Add auto refresh cache imports js
-
     var cssLink = document.getElementById('css-link');
     var timestamp = new Date().toISOString().replace(/[-:.]/g, '');
     cssLink.href = "css/app.css?" + timestamp;
@@ -102,6 +129,7 @@
             script.src = updatedSrc;
         }
     });
+
 </script>
 </body>
 </html>
