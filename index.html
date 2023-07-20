@@ -8,11 +8,24 @@
     <link rel="stylesheet" href="css/app.css" id="css-link">
 </head>
 <body ontouchstart="" id="body">
+ <div id="cursor"></div>
 
-<div style="position: absolute; padding: 1em;">
-    <div id="cursor"></div>
-    <h1>Louis TOTAIN | Portfolio</h1>
-    <p>Site en construction</p>
+<div style="width: calc(100vw - 6em); height: calc(100vh - 5em); margin: 2em 3em 3em 3em;">
+    <div style="width: 100%; height: 50px; display: flex; justify-content: center">
+        <div style="display: flex; align-items: center">
+            <span></span>
+        </div>
+        <div style="display: flex; align-items: center">
+            <span>LOUIS TOTAIN</span>
+        </div>
+        <div style="display: flex; align-items: center">
+            <span></span>
+        </div>
+    </div>
+    <div style="width: 100%; height: calc(100% - 50px); background: #f9eee0; border-radius: .5em; display: flex">
+        <div id="3d" style="width: 50%; height: 100%;"></div>
+        <div style="width: 50%; height: 100%"></div>
+    </div>
 </div>
 
 <script>
@@ -58,15 +71,14 @@
 
         var player = new APP.Player();
         player.load(JSON.parse(text));
-        player.setSize(window.innerWidth, window.innerHeight);
+
+        player.setSize(document.getElementById('3d').offsetWidth, document.getElementById('3d').offsetHeight);
         player.play();
 
-        document.body.appendChild(player.dom);
+        document.getElementById('3d').appendChild(player.dom);
 
         window.addEventListener('resize', function () {
-
-            player.setSize(window.innerWidth, window.innerHeight);
-
+            player.setSize(document.getElementById('3d').offsetWidth, document.getElementById('3d').offsetHeight);
         });
 
     });
@@ -83,7 +95,7 @@
 
     var scriptElements = document.querySelectorAll('script[type="module"]');
 
-    scriptElements.forEach(function(script) {
+    scriptElements.forEach(function (script) {
         var src = script.src;
         if (src.includes('.js')) {
             var updatedSrc = src + "?" + timestamp;

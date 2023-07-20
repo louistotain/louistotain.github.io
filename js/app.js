@@ -2,8 +2,9 @@ var APP = {
 
 	Player: function () {
 
-		var renderer = new THREE.WebGLRenderer( { antialias: true } );
-		renderer.setPixelRatio( window.devicePixelRatio ); // TODO: Use player.setPixelRatio()
+		var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+		renderer.setClearColor( 0x000000, 0 ); // the default
+		renderer.setPixelRatio(window.devicePixelRatio);
 
 		var loader = new THREE.ObjectLoader();
 		var camera, scene;
@@ -13,8 +14,8 @@ var APP = {
 		var events = {};
 
 		var dom = document.createElement( 'div' );
-		dom.appendChild( renderer.domElement );
 
+		dom.appendChild( renderer.domElement );
 		this.dom = dom;
 
 		this.width = 500;
@@ -140,6 +141,9 @@ var APP = {
 			let eyesClose = scene.getObjectByName('EyeClose');
 			eyesClose.visible = false;
 
+			// Set the background color to transparent
+			scene.background = null;
+
 		};
 
 		this.setPixelRatio = function ( pixelRatio ) {
@@ -180,6 +184,9 @@ var APP = {
 		function animate() {
 			time = performance.now();
 			manageEyes++;
+
+			// Clear the scene manually each frame to maintain transparency
+			renderer.clear();
 
 			try {
 				dispatch(events.update, { time: time - startTime, delta: time - prevTime });
