@@ -350,8 +350,8 @@ var APP = {
 			if (rootGroup instanceof THREE.Object3D) {
 				const raycaster = new THREE.Raycaster();
 				const mouse = new THREE.Vector2();
-				mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-				mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+				mouse.x = (event.clientX / document.getElementById('3d').offsetWidth) * 2 - 1;
+				mouse.y = -(event.clientY / document.getElementById('3d').offsetHeight) * 2 + 1;
 				raycaster.setFromCamera(mouse, camera);
 
 				const intersects = raycaster.intersectObject(rootGroup, true);
@@ -378,8 +378,8 @@ var APP = {
 			event.preventDefault();
 
 			// Récupérer les coordonnées du clic de souris
-			const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-			const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+			const mouseX = (event.clientX / document.getElementById('3d').offsetWidth) * 2 - 1;
+			const mouseY = -(event.clientY / document.getElementById('3d').offsetHeight) * 2 + 1;
 
 			// Créer un rayon à partir de la caméra et la position de la souris
 			const raycaster = new THREE.Raycaster();
