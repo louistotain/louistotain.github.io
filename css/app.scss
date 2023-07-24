@@ -3,7 +3,8 @@ body {
   font-size: 11px;
   margin: 0;
   overflow: hidden;
-  cursor: url('/img/cursor_default.svg'), default;
+  cursor: url('/img/cursor_default.png'), default;
+  outline: none;
 }
 
 canvas {
