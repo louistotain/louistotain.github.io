@@ -4,7 +4,7 @@ body {
   font-size: 11px;
   margin: 0;
   overflow: hidden;
-  cursor: url("/img/cursor_default.png"), default;
+  cursor: url("/img/vector.png"), default;
   outline: none;
 }
 
