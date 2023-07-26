@@ -32,6 +32,69 @@ body {
 
   #content {
     background: $ecru;
+
+    #model {
+      //
+    }
+
+    #title {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: calc(100% - 8em);
+      padding: 4em 5em 4em 0;
+
+      > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        &:first-child {
+          height: 70%;
+
+          > div {
+            display: flex;
+            flex-direction: column;
+
+            > h1 {
+              margin: 0;
+              font-size: 6.5em;
+              line-height: 1.2em;
+              letter-spacing: 3.5px;
+              font-weight: normal;
+
+              &:first-child {
+                color: $perfectPeach;
+              }
+
+              &:nth-child(2) {
+                color: $deepBronze;
+              }
+
+              &:last-child {
+                color: $richBrown;
+              }
+            }
+          }
+        }
+
+        &:last-child {
+          height: 30%;
+
+          > div {
+            background: $perfectPeach;
+            padding: 0 5em;
+
+            > h3 {
+              letter-spacing: 2px;
+              color: white;
+              font-weight: normal;
+            }
+          }
+        }
+      }
+    }
   }
 }
 

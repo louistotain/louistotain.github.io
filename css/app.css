@@ -23,6 +23,54 @@ body #logo {
 body #content {
   background: #FAEFE1;
 }
+body #content #title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 8em);
+  padding: 4em 5em 4em 0;
+}
+body #content #title > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+body #content #title > div:first-child {
+  height: 70%;
+}
+body #content #title > div:first-child > div {
+  display: flex;
+  flex-direction: column;
+}
+body #content #title > div:first-child > div > h1 {
+  margin: 0;
+  font-size: 6.5em;
+  line-height: 1.2em;
+  letter-spacing: 3.5px;
+  font-weight: normal;
+}
+body #content #title > div:first-child > div > h1:first-child {
+  color: #F5BA93;
+}
+body #content #title > div:first-child > div > h1:nth-child(2) {
+  color: #9D702D;
+}
+body #content #title > div:first-child > div > h1:last-child {
+  color: #5E472E;
+}
+body #content #title > div:last-child {
+  height: 30%;
+}
+body #content #title > div:last-child > div {
+  background: #F5BA93;
+  padding: 0 5em;
+}
+body #content #title > div:last-child > div > h3 {
+  letter-spacing: 2px;
+  color: white;
+  font-weight: normal;
+}
 
 canvas {
   display: block;
