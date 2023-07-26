@@ -21,10 +21,10 @@ body {
 }
 body #background-cloud {
   position: absolute;
-  top: 6em;
-  left: 40vw;
+  top: 5em;
+  left: 42vw;
   z-index: 0;
-  width: 38vw;
+  width: 40vw;
 }
 body #background-cloud > svg {
   width: 100%;
@@ -35,6 +35,11 @@ body #logo {
 }
 body #content {
   background: #FAEFE1;
+}
+body #content #model {
+  width: 50%;
+  height: 100%;
+  position: relative;
 }
 body #content #model > div:first-child {
   position: absolute;
@@ -54,7 +59,7 @@ body #content #title {
   height: calc(100% - 8em);
   padding: 4em 0;
   width: 50%;
-  margin-left: -4em;
+  margin-left: -3em;
   z-index: 1;
 }
 body #content #title > div {
@@ -74,7 +79,7 @@ body #content #title > div:first-child > div > h1 {
   margin: 0;
   font-size: 5.75vw;
   line-height: 1.2em;
-  letter-spacing: 3.5px;
+  letter-spacing: 3px;
   font-weight: normal;
   white-space: nowrap;
 }
