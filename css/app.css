@@ -22,7 +22,7 @@ body {
 body #background-cloud {
   position: absolute;
   top: 4.5em;
-  left: 775px;
+  left: 40vw;
   z-index: 0;
   width: 38vw;
 }
