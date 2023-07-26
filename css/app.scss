@@ -26,6 +26,14 @@ body {
   font-family: 'Bungee', sans-serif;
   cursor: url('/img/vector.png'), default;
   overflow: hidden;
+  position: relative;
+
+  #background-cloud {
+    position: absolute;
+    top: 4.5em;
+    left: 775px;
+    z-index: 0;
+  }
 
   #logo {
     font-size: 1.2em;
@@ -58,6 +66,7 @@ body {
       padding: 4em 0;
       width: 50%;
       margin-left: -4em;
+      z-index: 1;
 
       > div {
         display: flex;
