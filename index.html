@@ -6,23 +6,28 @@
     <meta name="generator" content="Three.js Editor">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="css/app.css" id="css-link">
+    <link rel="shortcut icon" href="/img/cloud.svg" type="image/svg">
+
+    <!--  Await fonts  -->
+    <link rel="preload" href="/fonts/Bungee-Regular.ttf" as="font" type="font/ttf" crossorigin>
+
 </head>
 <body ontouchstart="" id="body">
  <div id="cursor"></div>
 
-<div style="width: calc(100vw - 4em); height: calc(100vh - 3em); margin: 1em 2em 2em 2em;">
+<div style="width: 100%; height: 100%;">
     <div style="width: 100%; height: 50px; display: flex; justify-content: center">
         <div style="display: flex; align-items: center">
             <span></span>
         </div>
         <div style="display: flex; align-items: center">
-            <span>LOUIS TOTAIN</span>
+            <span id="logo">LOUIS TOTAIN</span>
         </div>
         <div style="display: flex; align-items: center">
             <span></span>
         </div>
     </div>
-    <div style="width: 100%; height: calc(100% - 50px); background: #f9eee0; border-radius: .5em; display: flex">
+    <div id="content" style="width: 100%; height: calc(100% - 50px); border-radius: .5em; display: flex">
         <div id="3d" style="width: 50%; height: 100%; position: relative;">
             <div id="background-3d" style="position: absolute; z-index: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; transform: scale(0.75); padding-top: 5em; margin-left: -3em;">
                 <svg width="722" height="621" viewBox="0 0 722 621" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,16 +62,16 @@
     var cursorDefault = document.getElementById("cursor-default");
     var isAnimating = false;
 
-    document.addEventListener("mousemove", function (event) {
-        var x = event.clientX;
-        var y = event.clientY;
-
-        cursor.style.left = x - 12 + "px";
-        cursor.style.top = y - 12 + "px";
-
-        cursorDefault.style.left = x + "px";
-        cursorDefault.style.top = y + "px";
-    });
+    // document.addEventListener("mousemove", function (event) {
+    //     var x = event.clientX;
+    //     var y = event.clientY;
+    //
+    //     cursor.style.left = x - 12 + "px";
+    //     cursor.style.top = y - 12 + "px";
+    //
+    //     cursorDefault.style.left = x + "px";
+    //     cursorDefault.style.top = y + "px";
+    // });
 
     document.addEventListener("click", function (event) {
         if (isAnimating) {
