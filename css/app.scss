@@ -59,10 +59,11 @@ body {
 
             > h1 {
               margin: 0;
-              font-size: 6.5em;
+              font-size: 5.75vw;
               line-height: 1.2em;
               letter-spacing: 3.5px;
               font-weight: normal;
+              white-space: nowrap;
 
               &:first-child {
                 color: $perfectPeach;

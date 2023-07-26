@@ -45,10 +45,11 @@ body #content #title > div:first-child > div {
 }
 body #content #title > div:first-child > div > h1 {
   margin: 0;
-  font-size: 6.5em;
+  font-size: 5.75vw;
   line-height: 1.2em;
   letter-spacing: 3.5px;
   font-weight: normal;
+  white-space: nowrap;
 }
 body #content #title > div:first-child > div > h1:first-child {
   color: #F5BA93;
