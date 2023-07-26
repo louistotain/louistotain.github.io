@@ -42,7 +42,7 @@ body #content #title {
   height: calc(100% - 8em);
   padding: 4em 0;
   width: 50%;
-  margin-left: -5em;
+  margin-left: -4em;
 }
 body #content #title > div {
   display: flex;
