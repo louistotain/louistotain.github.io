@@ -26,6 +26,10 @@ body #background-cloud {
   z-index: 0;
   width: 38vw;
 }
+body #background-cloud > svg {
+  width: 100%;
+  height: auto;
+}
 body #logo {
   font-size: 1.2em;
 }
