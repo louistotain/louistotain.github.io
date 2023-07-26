@@ -25,6 +25,7 @@ body {
   color: $darkOliveGreen;
   font-family: 'Bungee', sans-serif;
   cursor: url('/img/vector.png'), default;
+  overflow: hidden;
 
   #logo {
     font-size: 1.2em;
@@ -34,7 +35,19 @@ body {
     background: $ecru;
 
     #model {
-      //
+      > div {
+        &:first-child {
+          position: absolute;
+          z-index: 0;
+          width: 75%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          top: calc(50% + 6vh);
+          left: calc(50% - 2vw);
+          transform: translate(-50%, -50%);
+        }
+      }
     }
 
     #title {
@@ -42,7 +55,9 @@ body {
       flex-direction: column;
       justify-content: space-between;
       height: calc(100% - 8em);
-      padding: 4em 5em 4em 0;
+      padding: 4em 0;
+      width: 50%;
+      margin-left: -5em;
 
       > div {
         display: flex;
